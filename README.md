@@ -1,6 +1,8 @@
-# Lift
+# Elevator
 
-**TODO: Add description**
+A fun project for Upstate Elixir members to learn and play with OTP. Inspired
+by [Greg Vaugh's talk at ElixirConf 2014](http://confreaks.tv/videos/elixirconf2014-elixir-elevated) and the
+[corresponding repository](https://github.com/gvaughn/elixir_elevated)
 
 ## Installation
 
