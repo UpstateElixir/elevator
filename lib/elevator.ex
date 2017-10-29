@@ -1,4 +1,5 @@
 defmodule Lift do
+  require Logger
   use GenServer
 
   def start_link() do
@@ -15,14 +16,14 @@ defmodule Lift do
 
   def handle_cast({:ping, other}, state) do
     :timer.sleep 500
-    IO.puts("Ping -->")
+    Logger.info("Ping -->")
     GenServer.cast(other, {:pong, self()})
     {:noreply, state}
   end
 
   def handle_cast({:pong, other}, state) do
     :timer.sleep 500
-    IO.puts("<-- Pong")
+    Logger.info("<-- Pong")
     GenServer.cast(other, {:ping, self()})
     {:noreply, state}
   end
