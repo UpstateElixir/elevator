@@ -4,23 +4,30 @@ defmodule LiftTest do
   doctest Lift
 
   test "starts with a pid" do
-    {:ok, ping} = Lift.start_link()
-    assert is_pid(ping)
+    {:ok, pid} = Lift.start_link()
+    assert is_pid(pid)
   end
 
-  test "responds to :ping" do
+  test "starts with expected state" do
     {:ok, pid} = Lift.start_link()
-    test = Lift.ping(pid)
-    assert test == :pong
-    test = Lift.ping(pid)
-    assert test == :pong
+    assert Lift.info(pid) == %{
+      floor: 0,
+      open: true,
+      buttons: %{},
+      direction: :asc,
+      destination: nil
+    }
   end
 
-  test "responds to :pong" do
+  test "moves to a floor" do
     {:ok, pid} = Lift.start_link()
-    test = Lift.pong(pid)
-    assert test == :ping
-    test = Lift.pong(pid)
-    assert test == :ping
+    assert Lift.move(pid, 4) == %{
+      floor: 0,
+      open: true,
+      buttons: %{},
+      direction: :asc,
+      destination: 4
+    }
   end
+
 end
